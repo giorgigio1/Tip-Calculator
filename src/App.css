@@ -3,10 +3,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  
+}
 .logoFigure {
   width: 100%;
   text-align: center;
-  margin: 150px 0 80px 0;
+  margin-bottom: 90px;
 }
 .App {
   width: 100%;
@@ -48,12 +53,13 @@ input {
   font-size: 21px;
   font-weight: bold;
   border-radius: 5px;
-  direction: rtl;
+  text-align: right;
+  outline: none;
 }
 .top input::placeholder, .bottom input::placeholder {
   color:lightgray;
 }
-.customInput::placeholder {
+.middle input::placeholder {
   color: #00474B;
 }
 .dolar {
@@ -64,10 +70,10 @@ input {
   width: 13px;
   height: 16px;
 }
-.priceInput {
+.top input {
   background: url("./images/dolar.png") no-repeat #F3F9FA 10px;
 }
-.numberOfpeople {
+.bottom input {
   background: url("./images/person.svg") no-repeat #F3F9FA 10px;
 }
 .left p {
@@ -88,7 +94,7 @@ input {
   border: none;
   cursor: pointer;
 }
-.customInput {
+.middle input {
   width: 105px;
   height: 45px;
   background-color: #F3F9FA;
@@ -148,6 +154,22 @@ input {
   font-family: 'Space Mono';
   font-weight: bold;
   cursor: pointer;
+}
+.numberZero {
+  display: flex;
+  justify-content: space-between;
+}
+.numberZero p:nth-child(2) {
+  color: #E17457;
+  display: none;
+}
+/* *** Hovers ***/
+input:hover {
+  outline: 2px solid #26C2AE;
+}
+button:hover {
+  background-color: #9FE8DF;
+  color: #00474B;
 }
 @media only screen and (max-width: 940px)  {
   .App {
