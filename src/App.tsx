@@ -10,16 +10,27 @@ import { Icon } from "@mdi/react";
 import { useEffect, useRef, useState } from "react";
 import { Input } from "./components/Input";
 
-const buttons = ["5%", "10%", "15%", "25%", "50%"];
+const buttons = ["5", "10", "15", "25", "50"];
+const limit = 7;
+const customLimit = 3;
 
 function App() {
-  const [numberOfPeople, setNumberOfPeople] = useState<
-    number | null | string | any
-  >(null);
+  const [bill, setBill] = useState<any>("");
+  const [tip, setTip] = useState<any>("");
+  const [numberOfPeople, setNumberOfPeople] = useState<any>("");
 
-  const handleReset = () => {};
+  const tipAmount = (bill * tip) / 100 / numberOfPeople;
+  const total = bill / numberOfPeople + tipAmount;
 
-  const test = (e: React.ChangeEvent<HTMLInputElement> | any) => {
+  const handleReset = (e: any) => {
+    setBill("");
+    setTip("");
+    setNumberOfPeople("");
+  };
+
+  const handleNumberOfPeople = (
+    e: React.ChangeEvent<HTMLInputElement> | any
+  ) => {
     setNumberOfPeople(e.target.value);
   };
 
@@ -32,17 +43,35 @@ function App() {
         <section className="left">
           <div className="top">
             <p>Bill</p>
-            {/* <input placeholder="0" className="priceInput" type="text" /> */}
-            <Input type="number" placeholder="0" />
+            <Input
+              type="number"
+              placeholder="0"
+              value={bill}
+              onChange={(e: any) => {
+                setBill(e.target.value);
+                setBill(e.target.value.slice(0, limit));
+              }}
+            />
           </div>
           <div className="middle">
             <p>Select Tip %</p>
             <div className="buttons">
-              {buttons.map((element, index) => (
-                <Button key={index} children={element} />
+              {buttons.map((number, index) => (
+                <Button
+                  key={index}
+                  children={`${number}%`}
+                  onClick={() => setTip(number)}
+                />
               ))}
-              {/* <input placeholder="Custom" className="customInput" type="text" /> */}
-              <Input type="number" placeholder="Custom" />
+              <Input
+                type="number"
+                placeholder="Custom"
+                value={tip}
+                onChange={(e: any) => {
+                  setTip(e.target.value);
+                  setTip(e.target.value.slice(0, customLimit));
+                }}
+              />
             </div>
           </div>
           <div className="bottom">
@@ -59,25 +88,16 @@ function App() {
                 Can't be zero
               </p>
             </div>
-            {/* <input
+            <Input
+              type="number"
+              placeholder="0"
+              value={numberOfPeople}
+              onChange={handleNumberOfPeople}
               style={{
                 outline:
                   numberOfPeople && numberOfPeople.startsWith("0")
                     ? "2px solid #E17457"
-                    : "none",
-              }}
-              onChange={test}
-              placeholder="0"
-              className="numberOfpeople"
-              type="text"
-            /> */}
-            <Input
-              type="number"
-              placeholder="0"
-              onChange={test}
-              style={{
-                outline:
-                numberOfPeople && numberOfPeople.startsWith('0') ? "2px solid #E17457" : "",
+                    : "",
               }}
             />
           </div>
@@ -90,7 +110,11 @@ function App() {
             </div>
             <div className="valueSide">
               <FontAwesomeIcon icon={faDollarSign} size="2x" color="#26C2AE" />
-              <p>0.00</p>
+              <p>
+                {Number.isNaN(tipAmount) || !isFinite(tipAmount)
+                  ? "0.00"
+                  : Number(tipAmount.toString().slice(0, limit)).toFixed(2)}
+              </p>
             </div>
           </div>
           <div className="tipAmountContent tipAmountContent2">
@@ -100,10 +124,23 @@ function App() {
             </div>
             <div className="valueSide">
               <FontAwesomeIcon icon={faDollarSign} size="2x" color="#26C2AE" />
-              <p>0.00</p>
+              <p>
+                {Number.isNaN(total) || !isFinite(total)
+                  ? "0.00"
+                  : Number(total.toString().slice(0, limit)).toFixed(2)}
+              </p>
             </div>
           </div>
-          <Button children={"RESET"} onClick={handleReset} />
+          <Button
+            children={"RESET"}
+            onClick={handleReset}
+            style={{
+              backgroundColor:
+                bill !== "" || tip !== "" || numberOfPeople !== ""
+                  ? "#26C2AE"
+                  : "",
+            }}
+          />
         </section>
       </div>
     </div>

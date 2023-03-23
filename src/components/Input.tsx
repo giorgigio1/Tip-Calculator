@@ -5,15 +5,16 @@ type InputProps = {
   placeholder: string;
   style?: any;
   onChange?: any;
+  value?: any;
 };
 
-export const Input: React.FC<InputProps> = ({ type, placeholder, style, onChange }) => {
-  const [value, setValue] = useState<any>();
- 
-  const hanleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
-
+export const Input: React.FC<InputProps> = ({
+  type,
+  placeholder,
+  style,
+  onChange,
+  value,
+}) => {
   return (
     <input
       type={type}
