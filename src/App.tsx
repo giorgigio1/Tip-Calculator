@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { Input } from "./components/Input";
+//giorgi
 
 const buttons = ["5", "10", "15", "25", "50"];
 
