@@ -6,7 +6,6 @@
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  
 }
 .logoFigure {
   width: 100%;
@@ -47,8 +46,8 @@ input::-webkit-inner-spin-button {
 input {
   width: 100%;
   padding: 10px;
-  color: #00474B;
-  background-color: #F3F9FA;
+  color: #00474b;
+  background-color: #f3f9fa;
   border: none;
   font-size: 21px;
   font-weight: bold;
@@ -56,11 +55,12 @@ input {
   text-align: right;
   outline: none;
 }
-.top input::placeholder, .bottom input::placeholder {
-  color:lightgray;
+.top input::placeholder,
+.bottom input::placeholder {
+  color: lightgray;
 }
 .middle input::placeholder {
-  color: #00474B;
+  color: #00474b;
 }
 .dolar {
   width: 11px;
@@ -71,23 +71,23 @@ input {
   height: 16px;
 }
 .top input {
-  background: url("./images/dolar.png") no-repeat #F3F9FA 10px;
+  background: url("./images/dolar.png") no-repeat #f3f9fa 10px;
 }
 .bottom input {
-  background: url("./images/person.svg") no-repeat #F3F9FA 10px;
+  background: url("./images/person.svg") no-repeat #f3f9fa 10px;
 }
 .left p {
-  font-family: 'Space Mono';
-  color: #5E7A7D;
+  font-family: "Space Mono";
+  color: #5e7a7d;
   font-weight: 700;
   margin-bottom: 13px;
 }
 .left button {
   width: 105px;
   height: 45px;
-  background-color: #00474B;
+  background-color: #00474b;
   color: white;
-  font-family: 'Space Mono';
+  font-family: "Space Mono";
   font-size: 22px;
   font-weight: 700;
   border-radius: 5px;
@@ -97,9 +97,9 @@ input {
 .middle input {
   width: 105px;
   height: 45px;
-  background-color: #F3F9FA;
-  color: #00474B;
-  font-family: 'Space Mono';
+  background-color: #f3f9fa;
+  color: #00474b;
+  font-family: "Space Mono";
   font-size: 22px;
   font-weight: 700;
   padding-right: 15px;
@@ -111,7 +111,8 @@ input {
   gap: 15px;
 }
 /* ********************************** */
-.tipAmountContent, .valueSide {
+.tipAmountContent,
+.valueSide {
   display: flex;
   justify-content: space-between;
 }
@@ -122,13 +123,13 @@ input {
   font-size: 20px;
   color: white;
   font-weight: bold;
-  font-family: 'Space Mono';
+  font-family: "Space Mono";
 }
 .textSide span {
   font-size: 14px;
-  color: #7F9D9F;
+  color: #7f9d9f;
   font-weight: bold;
-  font-family: 'Space Mono';
+  font-family: "Space Mono";
 }
 .valueSide {
   align-items: center;
@@ -136,22 +137,22 @@ input {
 .valueSide img {
   width: 22px;
   height: 34px;
-  color: #26C2AE;
+  color: #26c2ae;
 }
 .valueSide p {
   font-size: 44px;
-  color: #26C2AE;
+  color: #26c2ae;
 }
 .right button {
   width: 100%;
   height: 50px;
-  background-color: #0D686D;
-  color: #00474B;
+  background-color: #0d686d;
+  color: #00474b;
   border: none;
   border-radius: 5px;
   margin-top: 110px;
   font-size: 20px;
-  font-family: 'Space Mono';
+  font-family: "Space Mono";
   font-weight: bold;
   cursor: pointer;
 }
@@ -160,18 +161,18 @@ input {
   justify-content: space-between;
 }
 .numberZero p:nth-child(2) {
-  color: #E17457;
+  color: #e17457;
   display: none;
 }
 /* *** Hovers ***/
 input:hover {
-  outline: 2px solid #26C2AE;
+  outline: 2px solid #26c2ae;
 }
 button:hover {
-  background-color: #9FE8DF;
-  color: #00474B;
+  background-color: #9fe8df;
+  color: #00474b;
 }
-@media only screen and (max-width: 940px)  {
+@media only screen and (max-width: 940px) {
   .App {
     display: flex;
     flex-direction: column;
@@ -201,7 +202,8 @@ button:hover {
   .right button {
     margin: 0;
   }
-  .left button, .customInput {
+  .left button,
+  .customInput {
     width: 146px;
   }
   .top {

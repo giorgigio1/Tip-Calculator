@@ -1,11 +1,11 @@
-import React, { useState, ChangeEvent } from "react";
+import React from "react";
 
 type InputProps = {
-  type: string;
+  type: "number";
   placeholder: string;
-  style?: any;
-  onChange?: any;
-  value?: any;
+  style?: React.CSSProperties;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 };
 
 export const Input: React.FC<InputProps> = ({

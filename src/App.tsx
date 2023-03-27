@@ -1,37 +1,33 @@
-import Dolar from "./images/dolar.png";
-import Person from "./images/person.svg";
-import Logo from "./images/logo.svg";
 import "./App.css";
+import Logo from "./images/logo.svg";
 import { Button } from "./components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
-import { mdiCurrencyUsd } from "@mdi/js";
-import { Icon } from "@mdi/react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Input } from "./components/Input";
 
 const buttons = ["5", "10", "15", "25", "50"];
-const limit = 7;
-const customLimit = 3;
 
 function App() {
   const [bill, setBill] = useState<any>("");
   const [tip, setTip] = useState<any>("");
   const [numberOfPeople, setNumberOfPeople] = useState<any>("");
+  const [selectedButton, setSelectedButton] = useState<any>(null);
 
   const tipAmount = (bill * tip) / 100 / numberOfPeople;
   const total = bill / numberOfPeople + tipAmount;
 
-  const handleReset = (e: any) => {
+  const handleReset = () => {
     setBill("");
     setTip("");
     setNumberOfPeople("");
   };
 
-  const handleNumberOfPeople = (
-    e: React.ChangeEvent<HTMLInputElement> | any
-  ) => {
-    setNumberOfPeople(e.target.value);
+  const hanleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e?.target.value.length < 3) {
+      setTip(e.target.value);
+    }
+    setSelectedButton(null);
   };
 
   return (
@@ -47,9 +43,8 @@ function App() {
               type="number"
               placeholder="0"
               value={bill}
-              onChange={(e: any) => {
-                setBill(e.target.value);
-                setBill(e.target.value.slice(0, limit));
+              onChange={(e) => {
+                return e.target.value.length < 7 && setBill(e.target.value);
               }}
             />
           </div>
@@ -60,17 +55,23 @@ function App() {
                 <Button
                   key={index}
                   children={`${number}%`}
-                  onClick={() => setTip(number)}
+                  onClick={() => {
+                    setTip(number);
+                    setSelectedButton(number);
+                  }}
+                  style={
+                    {
+                      backgroundColor:
+                        number === selectedButton ? "#26C2AE" : "",
+                    } as React.CSSProperties
+                  }
                 />
               ))}
               <Input
                 type="number"
                 placeholder="Custom"
-                value={tip}
-                onChange={(e: any) => {
-                  setTip(e.target.value);
-                  setTip(e.target.value.slice(0, customLimit));
-                }}
+                value={selectedButton ? "" : tip}
+                onChange={hanleCustomChange}
               />
             </div>
           </div>
@@ -78,12 +79,14 @@ function App() {
             <div className="numberZero">
               <p>Number of People</p>
               <p
-                style={{
-                  display:
-                    numberOfPeople && numberOfPeople.startsWith("0")
-                      ? "block"
-                      : "none",
-                }}
+                style={
+                  {
+                    display:
+                      numberOfPeople && numberOfPeople.startsWith("0")
+                        ? "block"
+                        : "none",
+                  } as React.CSSProperties
+                }
               >
                 Can't be zero
               </p>
@@ -92,13 +95,15 @@ function App() {
               type="number"
               placeholder="0"
               value={numberOfPeople}
-              onChange={handleNumberOfPeople}
-              style={{
-                outline:
-                  numberOfPeople && numberOfPeople.startsWith("0")
-                    ? "2px solid #E17457"
-                    : "",
-              }}
+              onChange={(e) => setNumberOfPeople(e.target.value)}
+              style={
+                {
+                  outline:
+                    numberOfPeople && numberOfPeople.startsWith("0")
+                      ? "2px solid #E17457"
+                      : "",
+                } as React.CSSProperties
+              }
             />
           </div>
         </section>
@@ -113,7 +118,7 @@ function App() {
               <p>
                 {Number.isNaN(tipAmount) || !isFinite(tipAmount)
                   ? "0.00"
-                  : Number(tipAmount.toString().slice(0, limit)).toFixed(2)}
+                  : tipAmount.toFixed(2)}
               </p>
             </div>
           </div>
@@ -127,7 +132,7 @@ function App() {
               <p>
                 {Number.isNaN(total) || !isFinite(total)
                   ? "0.00"
-                  : Number(total.toString().slice(0, limit)).toFixed(2)}
+                  : total.toFixed(2)}
               </p>
             </div>
           </div>
