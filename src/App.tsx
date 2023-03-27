@@ -1,13 +1,9 @@
-import Dolar from "./images/dolar.png";
-import Person from "./images/person.svg";
 import Logo from "./images/logo.svg";
 import "./App.css";
 import { Button } from "./components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
-import { mdiCurrencyUsd } from "@mdi/js";
-import { Icon } from "@mdi/react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Input } from "./components/Input";
 
 const buttons = ["5", "10", "15", "25", "50"];
