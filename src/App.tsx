@@ -22,6 +22,7 @@ function App() {
     setBill("");
     setTip("");
     setNumberOfPeople("");
+    setSelectedButton("")
   };
 
   const hanleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {

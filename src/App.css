@@ -187,6 +187,7 @@ button:hover {
     width: 375px;
     height: auto;
     padding: 32px;
+    border-radius: 25px 25px 0 0;
   }
   .left {
     width: 100%;
@@ -203,7 +204,7 @@ button:hover {
     margin: 0;
   }
   .left button,
-  .customInput {
+  .left .buttons input {
     width: 146px;
   }
   .top {
